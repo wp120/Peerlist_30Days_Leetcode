@@ -6,11 +6,12 @@ private:
     void coverIsland(int r, int c, vector<vector<char>> &grid)
     {
         int n = grid.size(), m = grid[0].size();
-        if (r < 0 || r >= n || c < 0 || c >= m || grid[r][c] != '1')
+        if (r < 0 || r >= n || c < 0 || c >= m || grid[r][c] != '1') // checking if given cell is valid and if it an uncovered island
         {
             return;
         }
         grid[r][c] = '2';
+        // now getting adjacent cells
         int rChanges[4] = {-1, 0, 1, 0};
         int cChanges[4] = {0, 1, 0, -1};
         for (int i = 0; i < 4; i++)
