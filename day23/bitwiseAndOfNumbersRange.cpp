@@ -20,7 +20,7 @@ private:
 
     long long int toChangeBit(int diff, int ind, int &left)
     {
-        if (ind == 31)
+        if (ind == 0)
         {
             if (1 <= diff)
             {
@@ -29,14 +29,14 @@ private:
             return 1;
         }
         long long int ans = 0;
-        if (getBit(left, 31 - ind - 1) == 0)
+        if (getBit(left, ind - 1) == 0)
         {
-            ans = pow(2, 31 - ind - 1);
+            ans = pow(2, ind - 1);
         }
-        ans += toChangeBit(diff, ind + 1, left);
+        ans += toChangeBit(diff, ind - 1, left);
         if (ans <= diff)
         {
-            clearBit(left, 31 - ind);
+            clearBit(left, ind);
         }
         return ans;
     }
@@ -44,7 +44,7 @@ private:
 public:
     int rangeBitwiseAnd(int left, int right)
     {
-        toChangeBit(right - left, 0, left);
+        toChangeBit(right - left, 31, left);
         return left;
     }
 };
